@@ -1,6 +1,10 @@
 import ComposableArchitecture
 import SwiftUI
 
+#if DEBUG
+  import Inject
+#endif
+
 @Reducer public struct AppFeature {
   public init() {}
 
@@ -32,6 +36,7 @@ public struct AppView: View {
       Text("AppFeature")
       ChildView(store: self.store.scope(state: \.childState, action: \.childAction))
     }
+    .enableInjection()
   }
 
   #if DEBUG

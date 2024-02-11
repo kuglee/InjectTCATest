@@ -13,6 +13,7 @@
 		5D5E57022B792B9A0025BCC8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D5E57012B792B9A0025BCC8 /* Preview Assets.xcassets */; };
 		5D5E570A2B792BB50025BCC8 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 5D5E57092B792BB50025BCC8 /* ComposableArchitecture */; };
 		5D5E570C2B792C390025BCC8 /* ChildFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5E570B2B792C390025BCC8 /* ChildFeature.swift */; };
+		5D5E571B2B7932630025BCC8 /* Inject in Frameworks */ = {isa = PBXBuildFile; productRef = 5D5E571A2B7932630025BCC8 /* Inject */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D5E570A2B792BB50025BCC8 /* ComposableArchitecture in Frameworks */,
+				5D5E571B2B7932630025BCC8 /* Inject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +94,7 @@
 			name = InjectTCATest;
 			packageProductDependencies = (
 				5D5E57092B792BB50025BCC8 /* ComposableArchitecture */,
+				5D5E571A2B7932630025BCC8 /* Inject */,
 			);
 			productName = InjectTCATest;
 			productReference = 5D5E56F62B792B980025BCC8 /* InjectTCATest.app */;
@@ -123,6 +126,7 @@
 			mainGroup = 5D5E56ED2B792B980025BCC8;
 			packageReferences = (
 				5D5E57082B792BB50025BCC8 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				5D5E57192B7932630025BCC8 /* XCRemoteSwiftPackageReference "Inject" */,
 			);
 			productRefGroup = 5D5E56F72B792B980025BCC8 /* Products */;
 			projectDirPath = "";
@@ -283,7 +287,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"InjectTCATest/Preview Content\"";
 				DEVELOPMENT_TEAM = C89KNBM28S;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -301,6 +305,10 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-interposable",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kuglee.InjectTCATest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -321,7 +329,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"InjectTCATest/Preview Content\"";
 				DEVELOPMENT_TEAM = C89KNBM28S;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -339,6 +347,10 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-interposable",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kuglee.InjectTCATest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -381,6 +393,14 @@
 				minimumVersion = 1.7.3;
 			};
 		};
+		5D5E57192B7932630025BCC8 /* XCRemoteSwiftPackageReference "Inject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzysztofzablocki/Inject";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -388,6 +408,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5D5E57082B792BB50025BCC8 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		5D5E571A2B7932630025BCC8 /* Inject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D5E57192B7932630025BCC8 /* XCRemoteSwiftPackageReference "Inject" */;
+			productName = Inject;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
