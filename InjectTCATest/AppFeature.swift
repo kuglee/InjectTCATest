@@ -1,18 +1,19 @@
 import ComposableArchitecture
+import HotSwiftUI
 import SwiftUI
 
-#if DEBUG
-  import Inject
-#endif
-
-@Reducer public struct AppFeature {
+@Reducer
+public struct AppFeature {
   public init() {}
 
-  @ObservableState public struct State: Equatable {
+  @ObservableState
+  public struct State: Equatable {
     var childState: ChildFeature.State
     var count = 0
 
-    public init(childState: ChildFeature.State) { self.childState = childState }
+    public init(childState: ChildFeature.State) {
+      self.childState = childState
+    }
   }
 
   public enum Action {
@@ -21,7 +22,9 @@ import SwiftUI
   }
 
   public var body: some ReducerOf<Self> {
-    Scope(state: \.childState, action: \.childAction) { ChildFeature() }
+    Scope(state: \.childState, action: \.childAction) {
+      ChildFeature()
+    }
 
     Reduce { state, action in
       switch action {
@@ -36,21 +39,25 @@ import SwiftUI
 }
 
 public struct AppView: View {
-  @Bindable var store: StoreOf<AppFeature>
+  @Bindable
+  var store: StoreOf<AppFeature>
 
-  public init(store: StoreOf<AppFeature>) { self.store = store }
+  public init(store: StoreOf<AppFeature>) {
+    self.store = store
+  }
 
   public var body: some View {
     VStack {
       Text("AppFeature")
-      Button("Increment") { self.store.send(.incrementButtonTapped) }
-      Text("Count: \(self.store.count)")
-      ChildView(store: self.store.scope(state: \.childState, action: \.childAction))
+      Button("Increment") {
+        store.send(.incrementButtonTapped)
+      }
+      Text("Count: \(store.count)")
+      ChildView(store: store.scope(state: \.childState, action: \.childAction))
     }
     .enableInjection()
   }
 
-  #if DEBUG
-    @ObserveInjection var inject
-  #endif
+  @ObserveInjection
+  var forceRedraw
 }
